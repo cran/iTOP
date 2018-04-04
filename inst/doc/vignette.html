@@ -12,7 +12,7 @@
 
 <meta name="author" content="Nanne Aben" />
 
-<meta name="date" content="2018-03-21" />
+<meta name="date" content="2018-04-04" />
 
 <title>A quick introduction to iTOP</title>
 
@@ -280,11 +280,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">A quick introduction to iTOP</h1>
 <h4 class="author"><em>Nanne Aben</em></h4>
-<h4 class="date"><em>2018-03-21</em></h4>
+<h4 class="date"><em>2018-04-04</em></h4>
 
 
 
-<p>iTOP is the R package accompanying our publication on the inference of topologies of relationships between datasets, such as multi-omics and phenotypic data recorded on the same samples (Aben et al., 2018, submitted). We based this methodology on the RV coefficient, a measure of matrix correlation, which we have extended for partial matrix correlations and binary data.</p>
+<p>iTOP is the R package accompanying our publication on the inference of topologies of relationships between datasets, such as multi-omics and phenotypic data recorded on the same samples (Aben et al., 2018, doi.org/10.1101/293993). We based this methodology on the RV coefficient, a measure of matrix correlation, which we have extended for partial matrix correlations and binary data.</p>
 <p>In this vignette, we will provide code examples for inferring a topology of continuous value datasets first. Subsequently, we will consider inferring a topology of a mix of continuous and binary value data types, using data type specific configuration matrices.</p>
 <div id="inferring-a-topology-using-continuous-value-datasets" class="section level2">
 <h2>Inferring a topology using continuous value datasets</h2>
@@ -354,7 +354,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="inferring-a-topology-of-interactions-between-datasets" class="section level3">
 <h3>Inferring a topology of interactions between datasets</h3>
 <p>Of course, the number of possible partial matrix correlations to consider is very large. To summarize all of these, we can use the PC algorithm to construct a topology of interactions between datasets. In this example, the algorithm was even able to infer the causality between the datasets!</p>
-<p>If you haven’t already installed the pcalg package, you can use the following code to do so (as sometimes installing dependencies from Bioconductor seems to fail for this package). On some Linux systems, also additional libraries needed to be installed, such as</p>
+<p>NB: if you have trouble installing the pcalg package, you can use the following code to do so (as sometimes installing dependencies from Bioconductor seems to fail for this package). On some Linux systems, we also needed to install some additional libraries:</p>
 <ul>
 <li>sudo apt-get install libv8-3.14-dev</li>
 <li>sudo apt-get install libgmp3-dev</li>
@@ -398,7 +398,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">data =<span class="st"> </span><span class="kw">intersect.samples</span>(data)</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2">similarity_fun =<span class="st"> </span><span class="kw">list</span>(jaccard, inner.product, inner.product, jaccard)</a>
 <a class="sourceLine" id="cb25-3" data-line-number="3">config_matrices =<span class="st"> </span><span class="kw">compute.config.matrices</span>(data, <span class="dt">similarity_fun=</span>similarity_fun)</a></code></pre></div>
-<p>Of course, it is possible to use other similarity measures: simply set similarity_fun[[i]] to the function of your choice. This function should take two vectors (each representing a sample) as an input and should return a single number (representing the similarity between those two samples) as an output. We recommend using a similarity measure that results in symmetric and positive semi-definite configuration matrices. When using new similarity functions, it is also be worthwhile to experiment with the center parameter in compute.config.matrices(). For inner product similarity and Jaccard similarity, we recommend using centering (of note, in order to center binary data, we center the configuration matrices using kernel centering, for details see our manuscript: Aben et al., 2018). However, for some other similarity measures, centering may not be beneficial (for example, because the measure itself is already centered, such as in the case of Pearson correlation).</p>
+<p>Of course, it is possible to use other similarity measures: simply set similarity_fun[[i]] to the function of your choice. This function should take two vectors (each representing a sample) as an input and should return a single number (representing the similarity between those two samples) as an output. We recommend using a similarity measure that results in symmetric and positive semi-definite configuration matrices. When using new similarity functions, it is also be worthwhile to experiment with the center parameter in compute.config.matrices(). For inner product similarity and Jaccard similarity, we recommend using centering (of note, in order to center binary data, we center the configuration matrices using kernel centering, for details see our manuscript: Aben et al., 2018, doi.org/10.1101/293993). However, for some other similarity measures, centering may not be beneficial (for example, because the measure itself is already centered, such as in the case of Pearson correlation).</p>
 <p>Alternatively, if it is hard to represent the configuration matrix as a function of its samples, it is also possible to set the entire configuration matrix at once. Once again, we recommend the use of symmetric and positive semi-definite configuration matrices, and we suggest careful assessment of whether centering is required.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># this code block is not evaluated</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">config_matrices =<span class="st"> </span><span class="kw">compute.config.matrices</span>(data)</a>
