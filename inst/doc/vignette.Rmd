@@ -30,7 +30,7 @@ data = list(x1=x1, x2=x2, x3=x3, x4=x4)
 ### Matrix correlations
 We will compare the datasets $x_1$, $x_2$, $x_3$ and $x_4$ with each other using matrix correlations. To this end, we will:
 
-* make sure all datasets have the same set of samples, so that they can be compared (we have now created the data such that this is already the case, but it is good practice to check anyway);
+* make sure all datasets have the same set of samples in the same order, so that they can be compared (we have now created the data such that this is already the case, but it is good practice to check anyway);
 * convert the datasets to configuration matrices (i.e. similarity matrices); and finally
 * compute the matrix correlation between each pair of datasets, which we will save in the correlation matrix $cors$.
 ```{r, message=F}
@@ -93,7 +93,8 @@ install.packages("pcalg")
 ```{r, message=F}
 library(pcalg)
 suffStat = list(cors=cors, cors_perm=cors_perm)
-pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
+pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, 
+            labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
 plot(pc.fit, main="")
 ```
 
@@ -130,7 +131,8 @@ Alternatively, if it is hard to represent the configuration matrix as a function
 ```{r, eval=F}
 # this code block is not evaluated
 config_matrices = compute.config.matrices(data)
-config_matrices$x1 = process.custom.config.matrix(my.config.matrix.for.x1, center=T, mod.rv=T)
+config_matrices$x1 = process.custom.config.matrix(my.config.matrix.for.x1, 
+                                                  center=T, mod.rv=T)
 ```
 
 ### Using the data type specific configuration matrices
@@ -139,6 +141,7 @@ Once the configuration matrices have been computed, all other tools from the pac
 cors = rv.cor.matrix(config_matrices)
 cors_perm = run.permutations(config_matrices, nperm=1000)
 suffStat = list(cors=cors, cors_perm=cors_perm)
-pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
+pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, 
+            labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
 plot(pc.fit, main="")
 ```

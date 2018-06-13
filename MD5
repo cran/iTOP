@@ -1,11 +1,11 @@
-cdfc08bef5d06f4e43de64a7455e650a *DESCRIPTION
+a61c5a8502626bcffbde46bf36790c26 *DESCRIPTION
 0361f0d1010005a8e6c1f94fdb1a7f2a *NAMESPACE
-92e6d22a054bbc48af0e8ffa18e09636 *NEWS.md
-1d891b8d107583aeeee0cdefb005eeaf *R/functions.R
+7e51e8ecb2ac61be6e01ba235c60e02d *NEWS.md
+7dcf3fa5cd24c9df4c89d1da9269c4b8 *R/functions.R
 0d4241b6abfb24d99d52b150debacdbb *build/vignette.rds
-fc6ce07e683a1e86e4b0ce1f06986960 *inst/doc/vignette.R
-82d5c2e8a95034fe7cf08834934233a2 *inst/doc/vignette.Rmd
-d6bedb058528287d7474c972c931efc7 *inst/doc/vignette.html
+4837d63528ec916d03f38834144cfe5d *inst/doc/vignette.R
+378ce742e1b0e928a68b8f53d2e66105 *inst/doc/vignette.Rmd
+b9682b886f3d210f020be31c9b41493a *inst/doc/vignette.html
 9d18867f88d47ecb0bbd55561037701f *man/bootstrap.config.matrices.Rd
 e23ad8318b21c22191be47962fbf04c2 *man/compute.config.matrices.Rd
 fca7e82bc2940b94e8526e4a8f6d5222 *man/compute.config.matrix.Rd
@@ -22,4 +22,4 @@ b5849605945da68a9eba542c2e7e878c *man/rv.coef.Rd
 f8e59ae600c424ad106c1890523a63df *man/rv.link.significance.Rd
 d4a3588e15a76dfea6a830d6328ad4ae *man/rv.pcor.Rd
 c16828522c91ca6d4b6ee86e6b459284 *man/rv.pval.Rd
-82d5c2e8a95034fe7cf08834934233a2 *vignettes/vignette.Rmd
+378ce742e1b0e928a68b8f53d2e66105 *vignettes/vignette.Rmd

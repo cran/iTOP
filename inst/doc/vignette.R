@@ -50,7 +50,8 @@ rv.conf.interval(cors_boot, "x3", "x4", c("x1","x2"))
 ## ---- message=F----------------------------------------------------------
 library(pcalg)
 suffStat = list(cors=cors, cors_perm=cors_perm)
-pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
+pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, 
+            labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
 plot(pc.fit, main="")
 
 ## ------------------------------------------------------------------------
@@ -75,12 +76,14 @@ config_matrices = compute.config.matrices(data, similarity_fun=similarity_fun)
 ## ---- eval=F-------------------------------------------------------------
 #  # this code block is not evaluated
 #  config_matrices = compute.config.matrices(data)
-#  config_matrices$x1 = process.custom.config.matrix(my.config.matrix.for.x1, center=T, mod.rv=T)
+#  config_matrices$x1 = process.custom.config.matrix(my.config.matrix.for.x1,
+#                                                    center=T, mod.rv=T)
 
 ## ------------------------------------------------------------------------
 cors = rv.cor.matrix(config_matrices)
 cors_perm = run.permutations(config_matrices, nperm=1000)
 suffStat = list(cors=cors, cors_perm=cors_perm)
-pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
+pc.fit = pc(suffStat=suffStat, indepTest=rv.link.significance, 
+            labels=names(data), alpha=0.05, conservative=T, solve.confl=T)
 plot(pc.fit, main="")
 
